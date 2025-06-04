@@ -121,6 +121,7 @@ exports.getBestRatedBooks = (req, res, next) => {
   Book.find()
     .sort({ averageRating: -1 }) // Tri décroissant
     .limit(3)
+    .select('title averageRating imageUrl') // ⬅️ sélection des champs visibles
     .then(books => res.status(200).json(books))
     .catch(error => res.status(500).json({ error }));
 };
